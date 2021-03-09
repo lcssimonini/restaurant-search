@@ -1,0 +1,61 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.3'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id "jacoco"
+//	id 'com.avast.gradle.docker-compose' version '0.13.3'
+}
+
+//dockerCompose.isRequiredBy(test)
+
+group = 'com.restaurant'
+version = '0.0.1-SNAPSHOT'
+
+compileJava {
+	sourceCompatibility = JavaVersion.VERSION_11
+	targetCompatibility = JavaVersion.VERSION_11
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	springFox = "2.9.2"
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'org.postgresql:postgresql'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+	implementation group: 'org.apache.commons', name: 'commons-csv', version: '1.8'
+	implementation "io.springfox:springfox-swagger2:${springFox}"
+	implementation "io.springfox:springfox-swagger-ui:${springFox}"
+
+}
+
+test {
+	useJUnitPlatform()
+}
+
+jacocoTestReport {
+	reports {
+		xml.enabled true
+		html.enabled = true
+	}
+}
+
+plugins.withType(JacocoPlugin) {
+	tasks["test"].finalizedBy "jacocoTestReport"
+}
