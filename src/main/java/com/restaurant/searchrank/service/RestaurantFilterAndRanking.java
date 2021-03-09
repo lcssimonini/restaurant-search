@@ -7,7 +7,7 @@ import com.restaurant.searchrank.util.RestaurantLoader;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.restaurant.searchrank.domain.Restaurant.nameMatches;
+import static com.restaurant.searchrank.util.FilterUtil.buildPredicateChain;
 
 public class RestaurantFilterAndRanking implements RestaurantFilterService {
 
@@ -16,7 +16,7 @@ public class RestaurantFilterAndRanking implements RestaurantFilterService {
         List<Restaurant> allRestaurants = RestaurantLoader.loadRestaurants();
 
         return allRestaurants.stream()
-                .filter(nameMatches(request.getName()))
+                .filter(buildPredicateChain(request))
                 .collect(Collectors.toList());
     }
 }

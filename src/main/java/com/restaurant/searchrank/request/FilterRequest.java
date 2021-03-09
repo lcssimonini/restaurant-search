@@ -3,6 +3,9 @@ package com.restaurant.searchrank.request;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static com.restaurant.searchrank.util.ValidationUtil.validateStringField;
 
 @Data
@@ -18,9 +21,19 @@ public class FilterRequest {
 
     private String name;
     private String cuisine;
-    private Integer customerRating;
+    private Integer rating;
     private Integer distance;
     private Integer price;
+
+    public Map<String, Object> filterValues() {
+        return new HashMap<>() {{
+           put("name", name);
+           put("cuisine", cuisine);
+           put("customerRating", rating);
+           put("distance", distance);
+           put("price", price);
+        }};
+    }
 
     public void validate() {
         validateName();
@@ -53,14 +66,14 @@ public class FilterRequest {
     }
 
     private void validateCustomerRating() {
-        if (getCustomerRating() != null && !ratingIsInRAnge()) {
+        if (getRating() != null && !ratingIsInRAnge()) {
             throw new IllegalArgumentException(
                     "Customer rating should be between " + MIN_RATING + " and " + MAX_RATING + " stars");
         }
     }
 
     private boolean ratingIsInRAnge() {
-        return getCustomerRating().compareTo(MIN_RATING) >= 0 && getCustomerRating().compareTo(MAX_RATING) <= 0;
+        return getRating().compareTo(MIN_RATING) >= 0 && getRating().compareTo(MAX_RATING) <= 0;
     }
 
     private void validateCuisine() {

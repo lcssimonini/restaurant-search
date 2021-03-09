@@ -26,14 +26,14 @@ public class Restaurant {
     }
 
     public static Predicate<Restaurant> ratingMatches(Integer ratingInput) {
-        return restaurant -> restaurant.getRating().compareTo(ratingInput) > 0;
+        return restaurant -> restaurant.getRating().compareTo(ratingInput) >= 0;
     }
 
     public static Predicate<Restaurant> distanceMatches(Integer distanceInput) {
-        return restaurant -> restaurant.getDistance().compareTo(distanceInput) < 0;
+        return restaurant -> restaurant.getDistance().compareTo(distanceInput) <= 0;
     }
 
     public static Predicate<Restaurant> priceMatches(Integer priceInput) {
-        return restaurant -> restaurant.getPrice().compareTo(priceInput) < 0;
+        return restaurant -> restaurant.getPrice().compareTo(priceInput) <= 0;
     }
 }
