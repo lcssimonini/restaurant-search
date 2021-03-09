@@ -5,10 +5,10 @@ import com.restaurant.searchrank.domain.Restaurant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
-import org.springframework.util.ResourceUtils;
+import org.springframework.core.io.ClassPathResource;
 
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.*;
 import java.util.function.Function;
@@ -21,8 +21,8 @@ public class RestaurantLoader {
     private static final String[] CUISINES_HEADERS = { "id", "name"};
     private static final String[] RESTAURANTS_HEADERS = { "name", "customer_rating", "distance", "price", "cuisine_id" };
 
-    private static final String CUISINES_CSV = "classpath:cuisines.csv";
-    private static final String RESTAURANTS_CSV = "classpath:restaurants.csv";
+    private static final String CUISINES_CSV = "cuisines.csv";
+    private static final String RESTAURANTS_CSV = "restaurants.csv";
 
     public static List<Restaurant> loadRestaurants() {
         Iterable<CSVRecord> records = null;
@@ -84,7 +84,7 @@ public class RestaurantLoader {
     }
 
     private static Iterable<CSVRecord> getCsvRecords(String[] headers, String fileName) throws IOException {
-        Reader in = new FileReader(ResourceUtils.getFile(fileName));
+        Reader in = new InputStreamReader(new ClassPathResource(fileName).getInputStream());
         return CSVFormat.DEFAULT
                 .withHeader(headers)
                 .withFirstRecordAsHeader()
