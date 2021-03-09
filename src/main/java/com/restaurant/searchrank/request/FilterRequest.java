@@ -1,10 +1,8 @@
 package com.restaurant.searchrank.request;
 
+import com.restaurant.searchrank.exception.InvalidFilterException;
 import lombok.Builder;
 import lombok.Data;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static com.restaurant.searchrank.util.ValidationUtil.validateStringField;
 
@@ -25,27 +23,29 @@ public class FilterRequest {
     private Integer distance;
     private Integer price;
 
-    public Map<String, Object> filterValues() {
-        return new HashMap<>() {{
-           put("name", name);
-           put("cuisine", cuisine);
-           put("customerRating", rating);
-           put("distance", distance);
-           put("price", price);
-        }};
+    public static FilterRequestBuilder builder() {
+
+        return new FilterRequestBuilder() {
+
+            @Override
+            public FilterRequest build() {
+                return super.build().validate();
+            }
+        };
     }
 
-    public void validate() {
+    private FilterRequest validate() {
         validateName();
         validateCuisine();
         validateCustomerRating();
         validateDistance();
         validatePrice();
+        return this;
     }
 
     private void validatePrice() {
         if (getPrice() != null && !priceIsInRange()) {
-            throw new IllegalArgumentException(
+            throw new InvalidFilterException(
                     "Price should be between " + MIN_PRICE + " and " + MAX_PRICE + " dolars");
         }
     }
@@ -56,8 +56,8 @@ public class FilterRequest {
 
     private void validateDistance() {
         if (getDistance() != null && !distanceIsInRange()) {
-            throw new IllegalArgumentException(
-                    "Distance rating should be between " + MIN_DISTANCE + " and " + MAX_DISTANCE + " miles");
+            throw new InvalidFilterException(
+                    "Distance should be between " + MIN_DISTANCE + " and " + MAX_DISTANCE + " miles");
         }
     }
 
@@ -67,7 +67,7 @@ public class FilterRequest {
 
     private void validateCustomerRating() {
         if (getRating() != null && !ratingIsInRAnge()) {
-            throw new IllegalArgumentException(
+            throw new InvalidFilterException(
                     "Customer rating should be between " + MIN_RATING + " and " + MAX_RATING + " stars");
         }
     }

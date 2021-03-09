@@ -1,4 +1,4 @@
-package com.restaurant.searchrank.util;
+package com.restaurant.searchrank.builder;
 
 import com.restaurant.searchrank.domain.Restaurant;
 import com.restaurant.searchrank.request.FilterRequest;
@@ -10,7 +10,7 @@ import static com.restaurant.searchrank.domain.Restaurant.*;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 @UtilityClass
-public class FilterUtil {
+public class FilterBuilder {
 
     public static Predicate<Restaurant> buildPredicateChain(FilterRequest request) {
         Predicate<Restaurant> predicate = new NeutralPredicate();

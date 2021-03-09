@@ -7,9 +7,10 @@ import com.restaurant.searchrank.util.RestaurantLoader;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.restaurant.searchrank.util.FilterUtil.buildPredicateChain;
+import static com.restaurant.searchrank.builder.ComparatorBuilder.buildComparator;
+import static com.restaurant.searchrank.builder.FilterBuilder.buildPredicateChain;
 
-public class RestaurantFilterAndRanking implements RestaurantFilterService {
+public class RestaurantFilterAndRankingProcessor implements RestaurantFilterService {
 
     @Override
     public List<Restaurant> filterRestaurants(FilterRequest request) {
@@ -17,6 +18,7 @@ public class RestaurantFilterAndRanking implements RestaurantFilterService {
 
         return allRestaurants.stream()
                 .filter(buildPredicateChain(request))
+                .sorted(buildComparator())
                 .collect(Collectors.toList());
     }
 }

@@ -2,7 +2,7 @@ package com.restaurant.searchrank;
 
 import com.restaurant.searchrank.domain.Restaurant;
 import com.restaurant.searchrank.request.FilterRequest;
-import com.restaurant.searchrank.service.RestaurantFilterAndRanking;
+import com.restaurant.searchrank.service.RestaurantFilterAndRankingProcessor;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FilterTest {
 
-    private final RestaurantFilterAndRanking filterAndRanking = new RestaurantFilterAndRanking();
+    private final RestaurantFilterAndRankingProcessor filterAndRanking = new RestaurantFilterAndRankingProcessor();
 
     @Test
     public void shouldNotFilter() {
