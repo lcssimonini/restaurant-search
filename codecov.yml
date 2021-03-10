@@ -1,6 +1,6 @@
 ignore:
   - "src/main/java/SearchRankApplication.java"
-  - "src/main/java/exception"
-  - "src/main/java/domain"
-  - "src/main/java/request"
+  - "src/main/java/exception/**/*"
+  - "src/main/java/domain/**/*"
+  - "src/main/java/request/**/*"
   - "src/main/java/util/RestaurantLoader.java"
