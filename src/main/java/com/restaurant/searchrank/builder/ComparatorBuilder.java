@@ -9,8 +9,16 @@ import java.util.Comparator;
 public class ComparatorBuilder {
 
     public static Comparator<Restaurant> buildComparator() {
-        return Comparator.comparing(Restaurant::getDistance).reversed()
-                .thenComparing(Restaurant::getRating)
-                .thenComparing(Restaurant::getPrice).reversed();
+        return (r1, r2) -> {
+            int comparation;
+            comparation = r1.getDistance().compareTo(r2.getDistance());
+            if (comparation == 0) {
+                comparation = r2.getRating().compareTo(r1.getRating());
+            } if (comparation == 0) {
+                comparation = r1.getPrice().compareTo(r2.getPrice());
+            }
+
+            return comparation;
+        };
     }
 }

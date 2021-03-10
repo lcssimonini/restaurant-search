@@ -9,8 +9,8 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(InvalidFilterException.class)
-    public ResponseEntity<ApiError> handleMethodArgumentTypeMismatch(InvalidFilterException ex) {
+    @ExceptionHandler(InvalidFieldException.class)
+    public ResponseEntity<ApiError> handleMethodArgumentTypeMismatch(InvalidFieldException ex) {
         return new ResponseEntity<>(new ApiError(ex.getLocalizedMessage()), BAD_REQUEST);
     }
 }

@@ -1,6 +1,6 @@
 package com.restaurant.searchrank.request;
 
-import com.restaurant.searchrank.exception.InvalidFilterException;
+import com.restaurant.searchrank.exception.InvalidFieldException;
 import lombok.Builder;
 import lombok.Data;
 
@@ -45,7 +45,7 @@ public class FilterRequest {
 
     private void validatePrice() {
         if (getPrice() != null && !priceIsInRange()) {
-            throw new InvalidFilterException(
+            throw new InvalidFieldException(
                     "Price should be between " + MIN_PRICE + " and " + MAX_PRICE + " dolars");
         }
     }
@@ -56,7 +56,7 @@ public class FilterRequest {
 
     private void validateDistance() {
         if (getDistance() != null && !distanceIsInRange()) {
-            throw new InvalidFilterException(
+            throw new InvalidFieldException(
                     "Distance should be between " + MIN_DISTANCE + " and " + MAX_DISTANCE + " miles");
         }
     }
@@ -67,7 +67,7 @@ public class FilterRequest {
 
     private void validateCustomerRating() {
         if (getRating() != null && !ratingIsInRAnge()) {
-            throw new InvalidFilterException(
+            throw new InvalidFieldException(
                     "Customer rating should be between " + MIN_RATING + " and " + MAX_RATING + " stars");
         }
     }
