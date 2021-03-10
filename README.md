@@ -1,5 +1,5 @@
-[![Build Status](https://api.travis-ci.com/lucas_cs_simonini/restaurant-search.svg?branch=main)](https://travis-ci.com/lucas_cs_simonini/restaurant-search)
-[![codecov](https://codecov.io/bb/lucas_cs_simonini/restaurant-search/branch/main/graph/badge.svg)](https://codecov.io/bb/lucas_cs_simonini/restaurant-search)
+[![Build Status](https://travis-ci.org/lcssimonini/restaurant-search.svg?branch=main)](https://travis-ci.org/lcssimonini/restaurant-search)
+[![codecov](https://codecov.io/gh/lcssimonini/restaurant-search/branch/main/graph/badge.svg?token=E6NB6BGJJL)](https://codecov.io/gh/lcssimonini/restaurant-search)
 
 
 Data assumptions:
