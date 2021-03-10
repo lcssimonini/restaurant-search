@@ -6,3 +6,8 @@ Data assumptions:
 
 * numbers are all integers;
 * Spicy Palace record is incorrect, name was corrected for this solution;
+* This solution was designed for a test, it does not cover aspects that are necessary for production ready applications such as:
+    * monitoring;
+    * log search;
+    * alarms;
+    * property management;
