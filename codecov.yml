@@ -1,6 +1,0 @@
-ignore:
-  - "src/main/java/com/restaurant/searchrank/SearchRankApplication.java"
-  - "src/main/java/com/restaurant/searchrank/exception/**/*"
-  - "src/main/java/com/restaurant/searchrank/domain/**/*"
-  - "src/main/java/com/restaurant/searchrank/request/**/*"
-  - "src/main/java/com/restaurant/searchrank/util/RestaurantLoader.java"
