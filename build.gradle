@@ -50,16 +50,6 @@ jacocoTestReport {
 		xml.enabled true
 		html.enabled = true
 	}
-	afterEvaluate {
-		classDirectories.setFrom(files(classDirectories.files.collect {
-			fileTree(dir: it,
-					exclude: ['com/restaurant/searchrank/domain/**',
-							  'com/restaurant/searchrank/exception/**',
-							  'com/restaurant/searchrank/request/**',
-							  'com/restaurant/searchrank/util/RestaurantLoader**',
-							  'com/restaurant/searchrank/SearchRankApplication**'])
-		}))
-	}
 }
 
 plugins.withType(JacocoPlugin) {
